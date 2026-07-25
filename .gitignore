@@ -1,0 +1,16 @@
+venv/
+__pycache__/
+*.pyc
+data/train/*
+!data/train/.gitkeep
+data/test/*
+!data/test/.gitkeep
+data/uploads/
+data/uploads_archive/
+data/tmp/
+data/monitoring.db
+data/image_stats.csv
+models/*.keras
+!models/.gitkeep
+.env
+.kaggle/
