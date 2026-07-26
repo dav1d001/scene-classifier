@@ -4,9 +4,8 @@ Image classification of natural scenes (buildings, forest, glacier, mountain, se
 using the Intel Image Classification dataset, deployed as an API + dashboard with a
 retraining pipeline, trigger, and load-testing results.
 
-**🎥 Video Demo:** _[Add your YouTube link here — must show prediction AND retraining, camera on]_
-
-**🌐 Live URL:** _[Add your deployed API/UI URL here, if hosted publicly]_
+**🌐 Live URL:** API: https://scene-classifier-y85d.onrender.com
+UI: https://scene-classifier-ui.onrender.com
 
 ---
 
@@ -127,23 +126,9 @@ docker compose up --build --scale api=4
 
 ## Flood Request Simulation — Results
 
-_Fill this in after running Locust against 1, 2, and 4 API containers:_
-
 | Containers | Users | Spawn rate | Median latency | 95th %ile latency | RPS | Failures |
 |---|---|---|---|---|---|---|
-| 1 | | | | | | |
+| 1 |50 |5|~43,000ms|~183,000|0.7 |1% | |
 | 2 | | | | | | |
 | 4 | | | | | | |
 
-_[Paste Locust charts / screenshots here]_
-
-## Retraining Flow (as shown in the video demo)
-
-1. Upload a batch of new labeled images via the UI's **Upload & Retrain** tab
-   (or `POST /upload-retrain-data`)
-2. Images are saved to `data/uploads/<class>/`
-3. Press **Retrain now** (or wait for the automatic threshold trigger — default 50 new images)
-4. The API preprocesses the new images with the exact same pipeline used at training time,
-   fine-tunes the current production model, evaluates it, and only deploys it if accuracy
-   doesn't regress
-5. The API reloads the new weights in-process — no restart needed
