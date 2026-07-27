@@ -129,6 +129,12 @@ docker compose up --build --scale api=4
 | Containers | Users | Spawn rate | Median latency | 95th %ile latency | RPS | Failures |
 |---|---|---|---|---|---|---|
 | 1 |50 |5|~43,000ms|~183,000|0.7 |1% | |
-| 2 | | | | | | |
-| 4 | | | | | | |
+
+| Environment | Users | Spawn rate | Median latency | 95th %ile latency | RPS | Failures |
+|---|---|---|---|---|---|---|
+|Render|free tier|(1 instance)|50|5|17,000 ms|37,000 ms|1.07|0%
+NB:
+Render's free tier runs on a single shared CPU instance, so this reflects single-instance, resource-constrained behavior
+The local Docker container-scaling comparison (1 vs 2 vs 4) was attempted but blocked by a persistent Windows/WSL2 networking issue that intermittently prevented local requests from completing, despite containers themselves running and passing health checks
+Zero failures under load — the system degrades gracefully (slower) rather than crashing, which is a meaningful result on its own
 
