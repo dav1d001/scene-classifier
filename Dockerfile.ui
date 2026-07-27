@@ -7,6 +7,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY ui/ ui/
 COPY src/ src/
+COPY data/image_stats.csv data/image_stats.csv
 
 EXPOSE 8501
 ENV API_URL=http://api:8000
