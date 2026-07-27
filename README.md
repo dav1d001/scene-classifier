@@ -4,9 +4,8 @@ Image classification of natural scenes (buildings, forest, glacier, mountain, se
 using the Intel Image Classification dataset, deployed as an API + dashboard with a
 retraining pipeline, trigger, and load-testing results.
 
-**🎥 Video Demo:** _[Add your YouTube link here — must show prediction AND retraining, camera on]_
-
-**🌐 Live URL:** _[Add your deployed API/UI URL here, if hosted publicly]_
+**🌐 Live URL:** API: https://scene-classifier-y85d.onrender.com
+UI: https://scene-classifier-ui.onrender.com
 
 ---
 
@@ -61,7 +60,7 @@ scene-classifier/
 ### 1. Clone & install
 
 ```bash
-git clone <your-repo-url>
+git clone <(https://github.com/dav1d001/scene-classifier.git)>
 cd scene-classifier
 python -m venv venv && source venv/bin/activate     # or venv\Scripts\activate on Windows
 pip install -r requirements.txt
@@ -127,23 +126,23 @@ docker compose up --build --scale api=4
 
 ## Flood Request Simulation — Results
 
-_Fill this in after running Locust against 1, 2, and 4 API containers:_
-
 | Containers | Users | Spawn rate | Median latency | 95th %ile latency | RPS | Failures |
 |---|---|---|---|---|---|---|
-| 1 | | | | | | |
-| 2 | | | | | | |
-| 4 | | | | | | |
+| 1 |50 |5|~43,000ms|~183,000|0.7 |1% | |
 
-_[Paste Locust charts / screenshots here]_
 
-## Retraining Flow (as shown in the video demo)
 
-1. Upload a batch of new labeled images via the UI's **Upload & Retrain** tab
-   (or `POST /upload-retrain-data`)
-2. Images are saved to `data/uploads/<class>/`
-3. Press **Retrain now** (or wait for the automatic threshold trigger — default 50 new images)
-4. The API preprocesses the new images with the exact same pipeline used at training time,
-   fine-tunes the current production model, evaluates it, and only deploys it if accuracy
-   doesn't regress
-5. The API reloads the new weights in-process — no restart needed
+## Flood Request Simulation — Results
+
+| Environment | Users | Spawn rate | Median latency | 95th %ile latency | RPS | Failures |
+|---|---|---|---|---|---|---|
+|Render free tier(1 instance)|50|5|17,000 ms|37,000 ms|1.07|0%
+
+
+
+
+NB:
+Render's free tier runs on a single shared CPU instance, so this reflects single-instance, resource-constrained behavior
+The local Docker container-scaling comparison (1 vs 2 vs 4) was attempted but blocked by a persistent Windows/WSL2 networking issue that intermittently prevented local requests from completing, despite containers themselves running and passing health checks
+Zero failures under load — the system degrades gracefully (slower) rather than crashing, which is a meaningful result on its own
+
