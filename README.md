@@ -136,7 +136,7 @@ docker compose up --build --scale api=4
 
 | Environment | Users | Spawn rate | Median latency | 95th %ile latency | RPS | Failures |
 |---|---|---|---|---|---|---|
-|Render|free tier|(1 instance)|50|5|17,000 ms|37,000 ms|1.07|0%
+|Render free tier(1 instance)|50|5|17,000 ms|37,000 ms|1.07|0%
 
 
 
