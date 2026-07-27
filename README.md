@@ -60,7 +60,7 @@ scene-classifier/
 ### 1. Clone & install
 
 ```bash
-git clone <your-repo-url>
+git clone <(https://github.com/dav1d001/scene-classifier.git)>
 cd scene-classifier
 python -m venv venv && source venv/bin/activate     # or venv\Scripts\activate on Windows
 pip install -r requirements.txt
